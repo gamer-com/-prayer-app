@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بر الوالدين الرابع</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: linear-gradient(135deg, #E8F5E8, #fff); padding: 10px; }
+        .header { background: #2D5729; color: white; text-align: center; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .card { background: white; padding: 20px; margin: 15px 0; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .time { font-size: 32px; font-weight: bold; color: #2D5729; text-align: center; margin: 15px 0; }
+        .prayer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
+        .prayer-item { background: #2D5729; color: white; padding: 15px; border-radius: 10px; text-align: center; }
+        .prayer-time { font-size: 20px; font-weight: bold; color: #D4AF37; }
+        .dhikr { background: #f0f8f0; padding: 15px; margin: 10px 0; border-radius: 10px; border-right: 4px solid #2D5729; }
+        .install-btn { background: #D4AF37; color: #2D5729; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; margin: 10px; cursor: pointer; font-size: 16px; }
+        @media (max-width: 600px) { .prayer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕌 بر الوالدين الرابع</h1>
+        <p>تطبيق ديني شامل</p>
+        <button class="install-btn" onclick="installApp()">📱 تنصيب التطبيق</button>
+    </div>
+    
+    <div class="card">
+        <h2 style="text-align: center; color: #2D5729;">⏰ الوقت الحالي</h2>
+        <div class="time" id="time"></div>
+        <div style="text-align: center; color: #666;" id="date"></div>
+    </div>
+    
+    <div class="card">
+        <h2 style="color: #2D5729;">🕌 مواقيت الصلاة</h2>
+        <div class="prayer-grid">
+            <div class="prayer-item">
+                <div>الفجر</div>
+                <div class="prayer-time">05:30</div>
+            </div>
+            <div class="prayer-item">
+                <div>الظهر</div>
+                <div class="prayer-time">12:15</div>
+            </div>
+            <div class="prayer-item">
+                <div>العصر</div>
+                <div class="prayer-time">15:45</div>
+            </div>
+            <div class="prayer-item">
+                <div>المغرب</div>
+                <div class="prayer-time">18:20</div>
+            </div>
+            <div class="prayer-item">
+                <div>العشاء</div>
+                <div class="prayer-time">19:45</div>
+            </div>
+            <div class="prayer-item" style="background: white; color: #2D5729; border: 2px solid #D4AF37;">
+                <div>الجمعة</div>
+                <div class="prayer-time">13:00</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 style="color: #2D5729;">📿 أذكار الصباح</h2>
+        <div class="dhikr">
+            <h3>آية الكرسي</h3>
+            <p>اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...</p>
+            <small>مرة واحدة</small>
+        </div>
+        <div class="dhikr">
+            <h3>سبحان الله وبحمده</h3>
+            <p>سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</p>
+            <small>100 مرة</small>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 style="color: #2D5729;">🌙 أذكار المساء</h2>
+        <div class="dhikr">
+            <h3>سورة الإخلاص</h3>
+            <p>قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ يُولَدْ * وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</p>
+            <small>3 مرات</small>
+        </div>
+    </div>
+    
+    <div class="card" style="background: #2D5729; color: white; text-align: center;">
+        <h2>💝 بر الوالدين الرابع</h2>
+        <p style="font-size: 18px; margin: 15px 0;">الجنة تحت أقدام الأمهات</p>
+        <p style="color: #D4AF37; font-weight: bold;">محمد باناجه</p>
+    </div>
+    
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const dateString = now.toLocaleDateString('ar-SA', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        
+        function installApp() {
+            if ('serviceWorker' in navigator) {
+                alert('🎉 يمكنك تنصيب التطبيق من قائمة المتصفح!\n\nأندرويد: القائمة > إضافة للشاشة الرئيسية\nآيفون: مشاركة > إضافة للشاشة الرئيسية');
+            }
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
+"إضافة تطبيق الصلاة"
